@@ -5,6 +5,7 @@ const Remaining = () => {
     const { expenses, budget } = useContext(AppContext);
 
     // Use the reduce function to get a total of all the costs, assigning this to a var and displaying the variable in the JSX
+
     // Whenever the user adds an expense, this causes the state to update, which causes all components connected to the context to re-render and update themselves with new values
     const totalExpenses = expenses.reduce((total, item) => {
         return (total = total + item.cost);

@@ -14,11 +14,18 @@ const Budget = () => {
     const handleBudgetChange = (event) => {
         setNewBudget(event.target.value);
     }
+
     // Set the value attr of the input field to newBudget and add an onChange event listener that calls handleBudgetChange when the user changes the value of the input field
     return (
-        <div className = 'alert alert-secondary'>
-            <span>Budget: £{budget}</span>
-            <input type="number" step="10" value={newBudget} onChange={handleBudgetChange}></input>
+        <div className='alert alert-secondary'>
+            <span>Budget: £</span>
+            <input 
+                type="number" 
+                step="10"
+                value={newBudget} 
+                onChange={handleBudgetChange}
+            >
+            </input>
         </div>
     );
 };
