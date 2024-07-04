@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const Remaining = () => {
-    const { expenses, budget } = useContext(AppContext);
+    const { expenses, budget, Currency } = useContext(AppContext);
 
     // Use the reduce function to get a total of all the costs, assigning this to a var and displaying the variable in the JSX
 
@@ -14,9 +14,18 @@ const Remaining = () => {
     const alertType = totalExpenses > budget ? 'alert-danger' : 'alert-success';
 
     return (
-        <div className = {`alert ${alertType}`}>
-            <span>Remaining: £{budget - totalExpenses}</span>
+        <div className={`alert ${alertType}`}>
+            <span className="h6">Remaining budget</span>
+            <div className="input-group">
+                <span className="input-group-text">{Currency}</span>
+                <input
+                    className="form-control"
+                    readOnly
+                    value={budget - totalExpenses}
+                ></input>
+            </div>
         </div>
     );
 };
+
 export default Remaining;

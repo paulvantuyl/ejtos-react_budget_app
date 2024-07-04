@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { TiDelete, TiPlus } from 'react-icons/ti';
+import { PlusCircleFill, DashCircleFill, XCircleFill } from 'react-bootstrap-icons';
 import { AppContext } from '../context/AppContext';
 
 // Dispatching an action that contains the type, so the reducer knows how to update the state and the payload
 // Passing the ID of the expense, obtained from props when rendering the ExpenseList
 const ExpenseItem = (props) => {
-    const { dispatch } = useContext(AppContext);
+    const { dispatch, Currency } = useContext(AppContext);
 
     const handleDeleteExpense = () => {
         dispatch({
@@ -26,15 +26,42 @@ const ExpenseItem = (props) => {
         });
     };
 
+    const decreaseAllocation = (name) => {
+        const expense = {
+            name: name,
+            cost: 10,
+        };
+
+        dispatch({
+            type: 'RED_EXPENSE',
+            payload: expense,
+        });
+    };
+
     return (
         <tr>
             <td>{props.name}</td>
-            <td>£{props.cost}</td>
+            <td>{Currency}{props.cost}</td>
             <td>
-                <TiPlus size="1.5em" onClick={event => increaseAllocation(props.name)}></TiPlus>
+                <PlusCircleFill 
+                    color="#198754" 
+                    size="1.5em"
+                    onClick={(event) => increaseAllocation(props.name)}
+                />
             </td>
             <td>
-                <TiDelete size="1.5em" onClick={handleDeleteExpense}></TiDelete>
+                <DashCircleFill
+                    color="#ffc106"
+                    size="1.5em"
+                    onClick={(event) => decreaseAllocation(props.name)}
+                />
+            </td>
+            <td>
+                <XCircleFill
+                    color="#dc3445"
+                    size="1.5em"
+                    onClick={handleDeleteExpense}
+                />
             </td>
         </tr>
     );
