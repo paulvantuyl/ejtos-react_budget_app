@@ -15,8 +15,8 @@ const AllocationForm = (props) => {
             cost: parseInt(cost),
         };
 
-        if (cost > remaining) {
-            alert("The value can't exceed remaining funds of £" + remaining);
+        if (cost > remaining && action !== 'Reduce') {
+            alert("The budget allocation can't exceed remaining funds of " + Currency + remaining);
             setCost('');
             return;
         }
