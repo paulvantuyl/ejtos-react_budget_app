@@ -1,37 +1,37 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { AppContext } from '../context/AppContext';
 
 const Budget = () => {
-    // Import useContext hook and pass AppContext to it
-    // The component is using this to get values from global state
-    // It is confusing that you would use Budget and budget constants though
-    const { budget, Currency } = useContext(AppContext);
+    const { budget, dispatch, expenses, Currency } = useContext(AppContext);
 
-    // Use the useState hook to create a newBudget state variable and initialize it with the value of budget.
-    const [newBudget, setNewBudget] = useState(budget);
+    const changeBudget = (val) => {
+        const totalExpenses = expenses.reduce((total, item) => {
+            return (total += item.cost);
+        }, 0);
 
-    // This function updates the value of newBudget when the user changes the value of the input field.
-    const handleBudgetChange = (event) => {
-        setNewBudget(event.target.value);
-
-        // dispatchEvent({
-        //     type: 'SET_BUDGET',
-        //     payload: event.id,
-        // })
-    };
-
-    // Set the value attr of the input field to newBudget and add an onChange event listener that calls handleBudgetChange when the user changes the value of the input field
+        if (val < totalExpenses) {
+            alert("You can't reduce the budget that's already allocated.");
+        } else if (val > 20000) {
+            alert("The budget can't exceed " + Currency + "20,000");
+        } else {
+            dispatch({
+                type: 'SET_BUDGET',
+                payload: val,
+            })
+        }
+    }
+    
     return (
         <div className="alert alert-secondary">
-            <span className="h6">Budget</span>
+            <span className="h6">Budget {budget}</span>
             <div className="input-group">
                 <span className="input-group-text">{Currency}</span>
                 <input
                     type="number"
                     className="form-control"
-                    step="10"
-                    value={newBudget}
-                    onChange={handleBudgetChange}
+                    step="250"
+                    value={budget}
+                    onChange={(event) => changeBudget(event.target.value)}
                 ></input>
             </div>
         </div>
