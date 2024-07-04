@@ -10,7 +10,7 @@ const Budget = () => {
         }, 0);
 
         if (val < totalExpenses) {
-            alert("You can't reduce the budget that's already allocated.");
+            alert("You can't set a budget lower than what you've already allocated.");
         } else if (val > 20000) {
             alert("The budget can't exceed " + Currency + "20,000");
         } else {
@@ -20,16 +20,16 @@ const Budget = () => {
             })
         }
     }
-    
+
     return (
         <div className="alert alert-secondary">
-            <span className="h6">Budget {budget}</span>
+            <span className="h6">Budget</span>
             <div className="input-group">
                 <span className="input-group-text">{Currency}</span>
                 <input
                     type="number"
                     className="form-control"
-                    step="250"
+                    step="1000"
                     value={budget}
                     onChange={(event) => changeBudget(event.target.value)}
                 ></input>
