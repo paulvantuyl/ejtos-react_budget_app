@@ -93,10 +93,10 @@ const initialState = {
         { id: "Marketing", name: "Marketing", cost: 50 },
         { id: "Finance", name: "Finance", cost: 300 },
         { id: "Sales", name: "Sales", cost: 70 },
-        { id: "Human Resources", name: "Human Resources (HR)", cost: 40 },
+        { id: "Human Resources", name: "Human Resources", cost: 40 },
         { id: "IT", name: "IT", cost: 500 },
     ],
-    Currency: '£'
+    Currency: '$'
 };
 
 // 2. Creates the context this is the thing our components import and use to get the state
