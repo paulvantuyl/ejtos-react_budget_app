@@ -1,5 +1,6 @@
 {
   "name": "budget-allocation",
+  "homepage": "https://pvt.design/budget-allocation",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
